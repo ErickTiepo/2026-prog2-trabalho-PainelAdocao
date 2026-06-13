@@ -4,14 +4,12 @@
  */
 package br.edu.bsi.prog2.paineladocao.view;
 
-import javax.swing.JFrame;
-
 /**
  *
  * @author Usuario
  */
 public class TelaPrincipal extends javax.swing.JFrame {
-    
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(TelaPrincipal.class.getName());
 
     /**
@@ -19,7 +17,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
      */
     public TelaPrincipal() {
         initComponents();
-        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        setLocationRelativeTo(null);
+        setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
     }
 
     /**
@@ -31,64 +30,114 @@ public class TelaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        pnlFundo = new javax.swing.JPanel();
-        tabPrincipal = new javax.swing.JTabbedPane();
-        pnlAdotantes = new javax.swing.JPanel();
+        buttonGroup1 = new javax.swing.ButtonGroup();
+        tbpPrincipal = new javax.swing.JTabbedPane();
         pnlAnimais = new javax.swing.JPanel();
-        lblTituloAnimal = new javax.swing.JLabel();
-        lblNomeAnimal = new javax.swing.JLabel();
+        lblCadastro = new javax.swing.JLabel();
+        lblNome = new javax.swing.JLabel();
         txtNomeAnimal = new javax.swing.JTextField();
         lblEspecie = new javax.swing.JLabel();
-        txtEspecie = new javax.swing.JTextField();
         lblRaca = new javax.swing.JLabel();
-        txtRaca = new javax.swing.JTextField();
+        cbxEspecie = new javax.swing.JComboBox<>();
+        cbxRaca = new javax.swing.JComboBox<>();
+        lblIdade = new javax.swing.JLabel();
+        spnIdade = new javax.swing.JSpinner();
+        lblPorte = new javax.swing.JLabel();
+        rbPequeno = new javax.swing.JRadioButton();
+        rbMedio = new javax.swing.JRadioButton();
+        rbGrande = new javax.swing.JRadioButton();
+        lblTemperamento = new javax.swing.JLabel();
+        chkDocil = new javax.swing.JCheckBox();
+        chkBrincalhao = new javax.swing.JCheckBox();
+        chkIndependente = new javax.swing.JCheckBox();
+        chkSociavelCrianca = new javax.swing.JCheckBox();
+        chkSociavelAnimal = new javax.swing.JCheckBox();
+        btnCarregarFoto = new javax.swing.JButton();
+        lblFotoAnimal = new javax.swing.JLabel();
         btnSalvar = new javax.swing.JButton();
+        btnExcluir = new javax.swing.JButton();
         tblAnimais = new javax.swing.JScrollPane();
         tblListagemAnimais = new javax.swing.JTable();
+        pnlAdotantes = new javax.swing.JPanel();
+        pnlGaleria = new javax.swing.JPanel();
+        mnuBarPrincipal = new javax.swing.JMenuBar();
+        mnuArquivo = new javax.swing.JMenu();
+        mnuSair = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        pnlFundo.setBackground(new java.awt.Color(255, 255, 255));
+        pnlAnimais.setBackground(new java.awt.Color(204, 255, 255));
 
-        pnlAdotantes.setBackground(new java.awt.Color(255, 255, 255));
+        lblCadastro.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblCadastro.setText("Cadastro de Animais");
 
-        javax.swing.GroupLayout pnlAdotantesLayout = new javax.swing.GroupLayout(pnlAdotantes);
-        pnlAdotantes.setLayout(pnlAdotantesLayout);
-        pnlAdotantesLayout.setHorizontalGroup(
-            pnlAdotantesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 788, Short.MAX_VALUE)
-        );
-        pnlAdotantesLayout.setVerticalGroup(
-            pnlAdotantesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 553, Short.MAX_VALUE)
-        );
+        lblNome.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblNome.setText("Nome");
 
-        tabPrincipal.addTab("Adotantes", pnlAdotantes);
-
-        pnlAnimais.setBackground(new java.awt.Color(255, 255, 255));
-
-        lblTituloAnimal.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lblTituloAnimal.setForeground(new java.awt.Color(0, 0, 0));
-        lblTituloAnimal.setText("Cadastro de Animais");
-
-        lblNomeAnimal.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblNomeAnimal.setForeground(new java.awt.Color(0, 0, 0));
-        lblNomeAnimal.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblNomeAnimal.setText("Nome");
+        txtNomeAnimal.setBackground(new java.awt.Color(255, 204, 204));
 
         lblEspecie.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblEspecie.setForeground(new java.awt.Color(0, 0, 0));
-        lblEspecie.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblEspecie.setText("Espécie");
+        lblEspecie.setText("Especie");
 
         lblRaca.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblRaca.setForeground(new java.awt.Color(0, 0, 0));
-        lblRaca.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblRaca.setText("Raça");
 
-        txtRaca.addActionListener(this::txtRacaActionPerformed);
+        cbxEspecie.setBackground(new java.awt.Color(255, 204, 204));
+        cbxEspecie.setForeground(new java.awt.Color(0, 0, 0));
+        cbxEspecie.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione", "Cachorro", "Gato" }));
+        cbxEspecie.addActionListener(this::cbxEspecieActionPerformed);
 
+        cbxRaca.setBackground(new java.awt.Color(255, 204, 204));
+        cbxRaca.setForeground(new java.awt.Color(0, 0, 0));
+        cbxRaca.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione a Espécie primeiro" }));
+
+        lblIdade.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblIdade.setText("Idade");
+
+        lblPorte.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblPorte.setText("Porte");
+
+        buttonGroup1.add(rbPequeno);
+        rbPequeno.setText("Pequeno");
+
+        buttonGroup1.add(rbMedio);
+        rbMedio.setText("Medio");
+
+        buttonGroup1.add(rbGrande);
+        rbGrande.setText("Grande");
+
+        lblTemperamento.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblTemperamento.setText("Temperamento");
+
+        chkDocil.setText("Dócil");
+
+        chkBrincalhao.setText("Brincalhão");
+
+        chkIndependente.setText("Independente");
+
+        chkSociavelCrianca.setText("Sociável com Crianças");
+
+        chkSociavelAnimal.setText("Sociável com outros animais");
+
+        btnCarregarFoto.setBackground(new java.awt.Color(255, 204, 204));
+        btnCarregarFoto.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnCarregarFoto.setForeground(new java.awt.Color(0, 0, 0));
+        btnCarregarFoto.setText("Carregar Foto");
+        btnCarregarFoto.addActionListener(this::btnCarregarFotoActionPerformed);
+
+        btnSalvar.setBackground(new java.awt.Color(153, 255, 153));
+        btnSalvar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnSalvar.setForeground(new java.awt.Color(0, 0, 0));
+        btnSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/save.png"))); // NOI18N
         btnSalvar.setText("Salvar");
+        btnSalvar.addActionListener(this::btnSalvarActionPerformed);
+
+        btnExcluir.setBackground(new java.awt.Color(255, 153, 153));
+        btnExcluir.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnExcluir.setForeground(new java.awt.Color(0, 0, 0));
+        btnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/delete.png"))); // NOI18N
+        btnExcluir.setText("Excluir");
+        btnExcluir.addActionListener(this::btnExcluirActionPerformed);
 
         tblListagemAnimais.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -98,9 +147,17 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Nome", "Espécie", "Status", "Adotante"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, true, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tblAnimais.setViewportView(tblListagemAnimais);
 
         javax.swing.GroupLayout pnlAnimaisLayout = new javax.swing.GroupLayout(pnlAnimais);
@@ -108,88 +165,273 @@ public class TelaPrincipal extends javax.swing.JFrame {
         pnlAnimaisLayout.setHorizontalGroup(
             pnlAnimaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlAnimaisLayout.createSequentialGroup()
-                .addGroup(pnlAnimaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(lblNomeAnimal, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlAnimaisLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(pnlAnimaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lblRaca, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblEspecie, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlAnimaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtNomeAnimal)
-                    .addComponent(txtRaca)
-                    .addComponent(txtEspecie)))
-            .addComponent(tblAnimais, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 788, Short.MAX_VALUE)
-            .addGroup(pnlAnimaisLayout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(lblTituloAnimal, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlAnimaisLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnSalvar)
+                    .addGroup(pnlAnimaisLayout.createSequentialGroup()
+                        .addGap(45, 45, 45)
+                        .addGroup(pnlAnimaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pnlAnimaisLayout.createSequentialGroup()
+                                .addComponent(lblNome, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtNomeAnimal))
+                            .addGroup(pnlAnimaisLayout.createSequentialGroup()
+                                .addGroup(pnlAnimaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblPorte)
+                                    .addGroup(pnlAnimaisLayout.createSequentialGroup()
+                                        .addComponent(lblEspecie)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(pnlAnimaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(rbPequeno, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(rbMedio, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(rbGrande, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(pnlAnimaisLayout.createSequentialGroup()
+                                                .addComponent(cbxEspecie, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(lblRaca)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(cbxRaca, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(lblIdade)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(spnIdade, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(lblTemperamento))
+                                .addGap(0, 203, Short.MAX_VALUE))
+                            .addGroup(pnlAnimaisLayout.createSequentialGroup()
+                                .addGroup(pnlAnimaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(btnCarregarFoto, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
+                                    .addComponent(lblFotoAnimal, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnExcluir)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnSalvar))))
+                    .addGroup(pnlAnimaisLayout.createSequentialGroup()
+                        .addGroup(pnlAnimaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pnlAnimaisLayout.createSequentialGroup()
+                                .addGap(22, 22, 22)
+                                .addComponent(lblCadastro))
+                            .addGroup(pnlAnimaisLayout.createSequentialGroup()
+                                .addGap(104, 104, 104)
+                                .addGroup(pnlAnimaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(chkSociavelAnimal)
+                                    .addComponent(chkSociavelCrianca)
+                                    .addComponent(chkIndependente)
+                                    .addComponent(chkBrincalhao)
+                                    .addComponent(chkDocil))))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(pnlAnimaisLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(tblAnimais)))
                 .addContainerGap())
         );
         pnlAnimaisLayout.setVerticalGroup(
             pnlAnimaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlAnimaisLayout.createSequentialGroup()
-                .addGap(9, 9, 9)
-                .addComponent(lblTituloAnimal)
-                .addGap(18, 18, 18)
-                .addGroup(pnlAnimaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblNomeAnimal)
-                    .addComponent(txtNomeAnimal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
-                .addGroup(pnlAnimaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblEspecie)
-                    .addComponent(txtEspecie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
-                .addGroup(pnlAnimaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblRaca)
-                    .addComponent(txtRaca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(btnSalvar)
+                .addContainerGap()
+                .addComponent(lblCadastro)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(tblAnimais, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
-        tabPrincipal.addTab("Animais", pnlAnimais);
-
-        javax.swing.GroupLayout pnlFundoLayout = new javax.swing.GroupLayout(pnlFundo);
-        pnlFundo.setLayout(pnlFundoLayout);
-        pnlFundoLayout.setHorizontalGroup(
-            pnlFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlFundoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(tabPrincipal)
+                .addGroup(pnlAnimaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblNome)
+                    .addComponent(txtNomeAnimal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(pnlAnimaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(pnlAnimaisLayout.createSequentialGroup()
+                        .addGroup(pnlAnimaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblEspecie)
+                            .addComponent(cbxEspecie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblRaca)
+                            .addComponent(cbxRaca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblIdade)
+                            .addComponent(spnIdade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lblPorte)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(rbPequeno)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(rbMedio)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(rbGrande)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lblTemperamento)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(chkDocil)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(chkBrincalhao)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(chkIndependente)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(chkSociavelCrianca)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(chkSociavelAnimal)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnCarregarFoto)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lblFotoAnimal, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnlAnimaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnSalvar)
+                        .addComponent(btnExcluir)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(tblAnimais, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE)
                 .addContainerGap())
         );
-        pnlFundoLayout.setVerticalGroup(
-            pnlFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlFundoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(tabPrincipal)
-                .addContainerGap())
+
+        tbpPrincipal.addTab("Animais", new javax.swing.ImageIcon(getClass().getResource("/paw.png")), pnlAnimais); // NOI18N
+
+        javax.swing.GroupLayout pnlAdotantesLayout = new javax.swing.GroupLayout(pnlAdotantes);
+        pnlAdotantes.setLayout(pnlAdotantesLayout);
+        pnlAdotantesLayout.setHorizontalGroup(
+            pnlAdotantesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 857, Short.MAX_VALUE)
         );
+        pnlAdotantesLayout.setVerticalGroup(
+            pnlAdotantesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 727, Short.MAX_VALUE)
+        );
+
+        tbpPrincipal.addTab("Adotantes", new javax.swing.ImageIcon(getClass().getResource("/kitten.png")), pnlAdotantes); // NOI18N
+
+        javax.swing.GroupLayout pnlGaleriaLayout = new javax.swing.GroupLayout(pnlGaleria);
+        pnlGaleria.setLayout(pnlGaleriaLayout);
+        pnlGaleriaLayout.setHorizontalGroup(
+            pnlGaleriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 857, Short.MAX_VALUE)
+        );
+        pnlGaleriaLayout.setVerticalGroup(
+            pnlGaleriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 727, Short.MAX_VALUE)
+        );
+
+        tbpPrincipal.addTab("Galeria", new javax.swing.ImageIcon(getClass().getResource("/image-galery.png")), pnlGaleria); // NOI18N
+
+        mnuArquivo.setText("Arquivo");
+
+        mnuSair.setText("Sair");
+        mnuSair.addActionListener(this::mnuSairActionPerformed);
+        mnuArquivo.add(mnuSair);
+
+        mnuBarPrincipal.add(mnuArquivo);
+
+        setJMenuBar(mnuBarPrincipal);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlFundo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(tbpPrincipal)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlFundo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(tbpPrincipal)
         );
 
         pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtRacaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRacaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtRacaActionPerformed
+    private void cbxEspecieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxEspecieActionPerformed
+        // 1. Limpa as opções de raça que estavam lá antes
+        cbxRaca.removeAllItems();
+
+        // 2. Verifica se tem algo selecionado
+        if (cbxEspecie.getSelectedItem() != null) {
+
+            // 3. Pega o nome da espécie que o usuário clicou
+            String especieSelecionada = cbxEspecie.getSelectedItem().toString();
+
+            // 4. Preenche o segundo combobox com as raças certas
+            if (especieSelecionada.equals("Cachorro")) {
+                cbxRaca.addItem("Vira-lata (SRD)");
+                cbxRaca.addItem("Poodle");
+                cbxRaca.addItem("Golden Retriever");
+                cbxRaca.addItem("Pitbull");
+            } else if (especieSelecionada.equals("Gato")) {
+                cbxRaca.addItem("Sem Raça Definida (SRD)");
+                cbxRaca.addItem("Siamês");
+                cbxRaca.addItem("Persa");
+                cbxRaca.addItem("Frajola");
+            } else {
+                cbxRaca.addItem("Selecione a Espécie primeiro");
+            }
+        }
+
+
+    }//GEN-LAST:event_cbxEspecieActionPerformed
+
+    private void btnCarregarFotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCarregarFotoActionPerformed
+        javax.swing.JFileChooser fileChooser = new javax.swing.JFileChooser();
+        fileChooser.setDialogTitle("Selecione a foto");
+
+        javax.swing.filechooser.FileNameExtensionFilter filtro = new javax.swing.filechooser.FileNameExtensionFilter("Imagens", "jpg", "jpeg", "png");
+        fileChooser.setFileFilter(filtro);
+
+        int resultado = fileChooser.showOpenDialog(this);
+
+        if (resultado == javax.swing.JFileChooser.APPROVE_OPTION) {
+            java.io.File arquivo = fileChooser.getSelectedFile();
+
+            javax.swing.ImageIcon iconeOriginal = new javax.swing.ImageIcon(arquivo.getAbsolutePath());
+            java.awt.Image imagem = iconeOriginal.getImage().getScaledInstance(lblFotoAnimal.getWidth(), lblFotoAnimal.getHeight(), java.awt.Image.SCALE_SMOOTH);
+
+            lblFotoAnimal.setIcon(new javax.swing.ImageIcon(imagem));
+        }
+
+
+    }//GEN-LAST:event_btnCarregarFotoActionPerformed
+
+    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+// Valida se o nome foi preenchido e a especie selecionada
+        if (txtNomeAnimal.getText().trim().isEmpty() || cbxEspecie.getSelectedIndex() == 0) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Preencha o nome e selecione uma especie antes de salvar", "Erro", javax.swing.JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // Coleta os dados basicos para a tabela
+        String nome = txtNomeAnimal.getText();
+        String especie = cbxEspecie.getSelectedItem().toString();
+        String status = "Disponível";
+        String adotante = "Nenhum";
+
+        // Adiciona os dados como uma nova linha na tabela
+        javax.swing.table.DefaultTableModel modelo = (javax.swing.table.DefaultTableModel) tblListagemAnimais.getModel();
+        modelo.addRow(new Object[]{nome, especie, status, adotante});
+
+        // Limpa o campo de nome para facilitar o proximo cadastro
+        txtNomeAnimal.setText("");
+
+
+    }//GEN-LAST:event_btnSalvarActionPerformed
+
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+
+// Pega o indice da linha que o usuario selecionou na tabela
+        int linhaSelecionada = tblListagemAnimais.getSelectedRow();
+
+        // Validacao: se nenhuma linha foi selecionada o Java retorna -1
+        if (linhaSelecionada == -1) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Selecione um animal na tabela para poder excluir", "Aviso", javax.swing.JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        // Pega o modelo da tabela para poder manipular os dados
+        javax.swing.table.DefaultTableModel modelo = (javax.swing.table.DefaultTableModel) tblListagemAnimais.getModel();
+
+        // Remove a linha selecionada da tabela
+        modelo.removeRow(linhaSelecionada);
+
+        // Mensagem de confirmacao para o usuario
+        javax.swing.JOptionPane.showMessageDialog(this, "Animal excluido com sucesso", "Sucesso", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+
+
+    }//GEN-LAST:event_btnExcluirActionPerformed
+
+    private void mnuSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuSairActionPerformed
+// Exibe uma caixa de diálogo perguntando se o usuário realmente quer sair
+        int confirmacao = javax.swing.JOptionPane.showConfirmDialog(this, "Tem certeza que deseja sair do sistema?", "Confirmar Saída", javax.swing.JOptionPane.YES_NO_OPTION);
+
+        // Se a resposta for "Sim" (YES_OPTION), o comando System.exit(0) encerra o programa
+        if (confirmacao == javax.swing.JOptionPane.YES_OPTION) {
+            System.exit(0);
+        }
+
+
+    }//GEN-LAST:event_mnuSairActionPerformed
 
     /**
      * @param args the command line arguments
@@ -217,19 +459,38 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCarregarFoto;
+    private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnSalvar;
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JComboBox<String> cbxEspecie;
+    private javax.swing.JComboBox<String> cbxRaca;
+    private javax.swing.JCheckBox chkBrincalhao;
+    private javax.swing.JCheckBox chkDocil;
+    private javax.swing.JCheckBox chkIndependente;
+    private javax.swing.JCheckBox chkSociavelAnimal;
+    private javax.swing.JCheckBox chkSociavelCrianca;
+    private javax.swing.JLabel lblCadastro;
     private javax.swing.JLabel lblEspecie;
-    private javax.swing.JLabel lblNomeAnimal;
+    private javax.swing.JLabel lblFotoAnimal;
+    private javax.swing.JLabel lblIdade;
+    private javax.swing.JLabel lblNome;
+    private javax.swing.JLabel lblPorte;
     private javax.swing.JLabel lblRaca;
-    private javax.swing.JLabel lblTituloAnimal;
+    private javax.swing.JLabel lblTemperamento;
+    private javax.swing.JMenu mnuArquivo;
+    private javax.swing.JMenuBar mnuBarPrincipal;
+    private javax.swing.JMenuItem mnuSair;
     private javax.swing.JPanel pnlAdotantes;
     private javax.swing.JPanel pnlAnimais;
-    private javax.swing.JPanel pnlFundo;
-    private javax.swing.JTabbedPane tabPrincipal;
+    private javax.swing.JPanel pnlGaleria;
+    private javax.swing.JRadioButton rbGrande;
+    private javax.swing.JRadioButton rbMedio;
+    private javax.swing.JRadioButton rbPequeno;
+    private javax.swing.JSpinner spnIdade;
     private javax.swing.JScrollPane tblAnimais;
     private javax.swing.JTable tblListagemAnimais;
-    private javax.swing.JTextField txtEspecie;
+    private javax.swing.JTabbedPane tbpPrincipal;
     private javax.swing.JTextField txtNomeAnimal;
-    private javax.swing.JTextField txtRaca;
     // End of variables declaration//GEN-END:variables
 }
