@@ -3,13 +3,21 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package br.edu.bsi.prog2.paineladocao.view;
-
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.ImageIcon;
+import javax.imageio.ImageIO;
+import javax.swing.JOptionPane;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
 /**
  *
  * @author Usuario
  */
 public class TelaPrincipal extends javax.swing.JFrame {
-
+    // Nosso álbum de fotos temporário na memória
+    private java.util.Map<String, javax.swing.Icon> bancoDeFotos = new java.util.HashMap<>();
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(TelaPrincipal.class.getName());
 
     /**
@@ -19,8 +27,31 @@ public class TelaPrincipal extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
+        atualizarListaAnimaisNoCombobox();
     }
+private void atualizarListaAnimaisNoCombobox() {
+       // 1. Limpa os itens antigos
+        pnlAnimal.removeAllItems();
+        
+        // 2. Adiciona a opção padrão
+        pnlAnimal.addItem("Nenhum"); 
 
+        // 3. Pega os dados da tabela de animais
+        javax.swing.table.DefaultTableModel modeloAnimais = (javax.swing.table.DefaultTableModel) tblListagemAnimais.getModel();
+
+        // 4. Percorre as linhas da tabela e pega o nome de cada animal
+        for (int i = 0; i < modeloAnimais.getRowCount(); i++) {
+            // Verifica se a linha realmente tem um nome (evita erros de linhas vazias)
+            Object valorCelula = modeloAnimais.getValueAt(i, 0);
+            
+            if (valorCelula != null) {
+                String nomeAnimal = valorCelula.toString();
+                
+                // Adiciona todos os animais cadastrados na tabela direto no ComboBox
+                pnlAnimal.addItem(nomeAnimal);
+            }
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -31,6 +62,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
+        jComboBox2 = new javax.swing.JComboBox<>();
         tbpPrincipal = new javax.swing.JTabbedPane();
         pnlAnimais = new javax.swing.JPanel();
         lblCadastro = new javax.swing.JLabel();
@@ -59,10 +91,50 @@ public class TelaPrincipal extends javax.swing.JFrame {
         tblAnimais = new javax.swing.JScrollPane();
         tblListagemAnimais = new javax.swing.JTable();
         pnlAdotantes = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        lblNomeAdotante = new javax.swing.JLabel();
+        txtNomeAdotante = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        txtCpf = new javax.swing.JTextField();
+        lblTelefone = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        txtRua = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        txtBairro = new javax.swing.JTextField();
+        txtTelefone = new javax.swing.JFormattedTextField();
+        txtCep = new javax.swing.JFormattedTextField();
+        btnBuscarCep = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        txtCidade = new javax.swing.JTextField();
+        btnSalvarAdotante = new javax.swing.JButton();
+        btnExcluirAdotante = new javax.swing.JButton();
+        pnlAnimal = new javax.swing.JComboBox<>();
+        tblAdotantes = new javax.swing.JScrollPane();
+        tblListagemAdotantes = new javax.swing.JTable();
+        jLabel4 = new javax.swing.JLabel();
         pnlGaleria = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
+        jPanel5 = new javax.swing.JPanel();
+        scrollListaAnimais = new javax.swing.JScrollPane();
+        lstAnimaisGaleria = new javax.swing.JList<>();
+        lblVisNome1 = new javax.swing.JLabel();
+        jPanel6 = new javax.swing.JPanel();
+        lblVisFoto = new javax.swing.JLabel();
+        lblVisDetalhes = new javax.swing.JLabel();
+        lblVisNome = new javax.swing.JLabel();
+        lblVisAdotante = new javax.swing.JLabel();
+        lblVisTemperamento = new javax.swing.JLabel();
+        lblVisTituloAdotante = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
         mnuBarPrincipal = new javax.swing.JMenuBar();
         mnuArquivo = new javax.swing.JMenu();
         mnuSair = new javax.swing.JMenuItem();
+
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -83,12 +155,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
         lblRaca.setText("Raça");
 
         cbxEspecie.setBackground(new java.awt.Color(255, 204, 204));
-        cbxEspecie.setForeground(new java.awt.Color(0, 0, 0));
         cbxEspecie.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione", "Cachorro", "Gato" }));
         cbxEspecie.addActionListener(this::cbxEspecieActionPerformed);
 
         cbxRaca.setBackground(new java.awt.Color(255, 204, 204));
-        cbxRaca.setForeground(new java.awt.Color(0, 0, 0));
         cbxRaca.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione a Espécie primeiro" }));
 
         lblIdade.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -121,30 +191,24 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         btnCarregarFoto.setBackground(new java.awt.Color(255, 204, 204));
         btnCarregarFoto.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnCarregarFoto.setForeground(new java.awt.Color(0, 0, 0));
         btnCarregarFoto.setText("Carregar Foto");
         btnCarregarFoto.addActionListener(this::btnCarregarFotoActionPerformed);
 
         btnSalvar.setBackground(new java.awt.Color(153, 255, 153));
         btnSalvar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnSalvar.setForeground(new java.awt.Color(0, 0, 0));
         btnSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/save.png"))); // NOI18N
         btnSalvar.setText("Salvar");
         btnSalvar.addActionListener(this::btnSalvarActionPerformed);
 
         btnExcluir.setBackground(new java.awt.Color(255, 153, 153));
         btnExcluir.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnExcluir.setForeground(new java.awt.Color(0, 0, 0));
         btnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/delete.png"))); // NOI18N
         btnExcluir.setText("Excluir");
         btnExcluir.addActionListener(this::btnExcluirActionPerformed);
 
         tblListagemAnimais.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Nome", "Espécie", "Status", "Adotante"
@@ -194,15 +258,16 @@ public class TelaPrincipal extends javax.swing.JFrame {
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                                 .addComponent(spnIdade, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                     .addComponent(lblTemperamento))
-                                .addGap(0, 203, Short.MAX_VALUE))
+                                .addGap(0, 1369, Short.MAX_VALUE))
                             .addGroup(pnlAnimaisLayout.createSequentialGroup()
                                 .addGroup(pnlAnimaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(btnCarregarFoto, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
                                     .addComponent(lblFotoAnimal, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnExcluir)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnSalvar))))
+                                .addGap(18, 18, 18)
+                                .addComponent(btnSalvar)
+                                .addGap(48, 48, 48))))
                     .addGroup(pnlAnimaisLayout.createSequentialGroup()
                         .addGroup(pnlAnimaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pnlAnimaisLayout.createSequentialGroup()
@@ -217,9 +282,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                                     .addComponent(chkBrincalhao)
                                     .addComponent(chkDocil))))
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(pnlAnimaisLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(tblAnimais)))
+                    .addComponent(tblAnimais))
                 .addContainerGap())
         );
         pnlAnimaisLayout.setVerticalGroup(
@@ -265,39 +328,348 @@ public class TelaPrincipal extends javax.swing.JFrame {
                         .addComponent(btnCarregarFoto)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(lblFotoAnimal, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnlAnimaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnSalvar)
-                        .addComponent(btnExcluir)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(tblAnimais, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE)
-                .addContainerGap())
+                    .addGroup(pnlAnimaisLayout.createSequentialGroup()
+                        .addGroup(pnlAnimaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnExcluir)
+                            .addComponent(btnSalvar))
+                        .addGap(28, 28, 28)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tblAnimais, javax.swing.GroupLayout.DEFAULT_SIZE, 348, Short.MAX_VALUE)
+                .addGap(12, 12, 12))
         );
 
         tbpPrincipal.addTab("Animais", new javax.swing.ImageIcon(getClass().getResource("/paw.png")), pnlAnimais); // NOI18N
+
+        jLabel1.setText("ADOTANTES");
+
+        lblNomeAdotante.setText("Nome Completo:");
+
+        txtNomeAdotante.addActionListener(this::txtNomeAdotanteActionPerformed);
+
+        jLabel3.setText("CPF:");
+
+        txtCpf.addActionListener(this::txtCpfActionPerformed);
+
+        lblTelefone.setText("Telefone:");
+
+        jLabel5.setText("CEP:");
+
+        jLabel6.setText("Endereço(Rua):");
+
+        jLabel7.setText("Bairro:");
+
+        txtCep.addActionListener(this::txtCepActionPerformed);
+
+        btnBuscarCep.setText("Buscar CEP");
+        btnBuscarCep.addActionListener(this::btnBuscarCepActionPerformed);
+
+        jLabel2.setText("Cidade/UF:");
+
+        btnSalvarAdotante.setText("SALVAR ADOTANTE");
+        btnSalvarAdotante.addActionListener(this::btnSalvarAdotanteActionPerformed);
+
+        btnExcluirAdotante.setText("EXCLUIR ADOTANTE");
+
+        pnlAnimal.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        pnlAnimal.addActionListener(this::pnlAnimalActionPerformed);
+
+        tblListagemAdotantes.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "Nome", "CPF", "Telefone", "Cidade", "Animal Adotado"
+            }
+        ));
+        tblAdotantes.setViewportView(tblListagemAdotantes);
+
+        jLabel4.setText("Animal Adotado");
 
         javax.swing.GroupLayout pnlAdotantesLayout = new javax.swing.GroupLayout(pnlAdotantes);
         pnlAdotantes.setLayout(pnlAdotantesLayout);
         pnlAdotantesLayout.setHorizontalGroup(
             pnlAdotantesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 857, Short.MAX_VALUE)
+            .addComponent(tblAdotantes)
+            .addGroup(pnlAdotantesLayout.createSequentialGroup()
+                .addGap(6, 6, 6)
+                .addGroup(pnlAdotantesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlAdotantesLayout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlAdotantesLayout.createSequentialGroup()
+                        .addGroup(pnlAdotantesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlAdotantesLayout.createSequentialGroup()
+                                .addGroup(pnlAdotantesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblNomeAdotante)
+                                    .addComponent(jLabel3)
+                                    .addComponent(lblTelefone)
+                                    .addComponent(jLabel5))
+                                .addGap(132, 132, 132)
+                                .addGroup(pnlAdotantesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(pnlAdotantesLayout.createSequentialGroup()
+                                        .addComponent(txtCep)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(btnBuscarCep, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txtNomeAdotante)
+                                    .addComponent(txtTelefone)
+                                    .addComponent(txtCpf)))
+                            .addGroup(pnlAdotantesLayout.createSequentialGroup()
+                                .addGroup(pnlAdotantesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel2))
+                                .addGap(142, 142, 142)
+                                .addGroup(pnlAdotantesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(txtCidade)
+                                    .addComponent(txtBairro, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtRua, javax.swing.GroupLayout.Alignment.LEADING)))
+                            .addGroup(pnlAdotantesLayout.createSequentialGroup()
+                                .addGroup(pnlAdotantesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(pnlAdotantesLayout.createSequentialGroup()
+                                        .addGap(0, 0, Short.MAX_VALUE)
+                                        .addComponent(btnSalvarAdotante, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18))
+                                    .addGroup(pnlAdotantesLayout.createSequentialGroup()
+                                        .addComponent(jLabel4)
+                                        .addGap(1131, 1131, 1131)))
+                                .addGroup(pnlAdotantesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(pnlAnimal, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnExcluirAdotante, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(213, 213, 213))))
         );
         pnlAdotantesLayout.setVerticalGroup(
             pnlAdotantesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 727, Short.MAX_VALUE)
+            .addGroup(pnlAdotantesLayout.createSequentialGroup()
+                .addGap(6, 6, 6)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24)
+                .addGroup(pnlAdotantesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlAdotantesLayout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(lblNomeAdotante))
+                    .addComponent(txtNomeAdotante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(pnlAdotantesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlAdotantesLayout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(jLabel3))
+                    .addComponent(txtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(pnlAdotantesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblTelefone)
+                    .addComponent(txtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12)
+                .addGroup(pnlAdotantesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlAdotantesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtCep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnBuscarCep))
+                    .addGroup(pnlAdotantesLayout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(jLabel5)))
+                .addGap(12, 12, 12)
+                .addGroup(pnlAdotantesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlAdotantesLayout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(jLabel6))
+                    .addComponent(txtRua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12)
+                .addGroup(pnlAdotantesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlAdotantesLayout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(jLabel7))
+                    .addComponent(txtBairro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12)
+                .addGroup(pnlAdotantesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlAdotantesLayout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(jLabel2))
+                    .addComponent(txtCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(pnlAdotantesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(pnlAnimal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
+                .addGap(10, 10, 10)
+                .addGroup(pnlAdotantesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSalvarAdotante)
+                    .addComponent(btnExcluirAdotante))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 107, Short.MAX_VALUE)
+                .addComponent(tblAdotantes, javax.swing.GroupLayout.PREFERRED_SIZE, 433, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18))
         );
 
         tbpPrincipal.addTab("Adotantes", new javax.swing.ImageIcon(getClass().getResource("/kitten.png")), pnlAdotantes); // NOI18N
 
-        javax.swing.GroupLayout pnlGaleriaLayout = new javax.swing.GroupLayout(pnlGaleria);
-        pnlGaleria.setLayout(pnlGaleriaLayout);
-        pnlGaleriaLayout.setHorizontalGroup(
-            pnlGaleriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 857, Short.MAX_VALUE)
+        pnlGaleria.setLayout(new java.awt.BorderLayout());
+
+        lstAnimaisGaleria.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        lstAnimaisGaleria.addListSelectionListener(this::lstAnimaisGaleriaValueChanged);
+        scrollListaAnimais.setViewportView(lstAnimaisGaleria);
+
+        lblVisNome1.setText("Lista de Animais");
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblVisNome1)
+                    .addComponent(scrollListaAnimais, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
-        pnlGaleriaLayout.setVerticalGroup(
-            pnlGaleriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 727, Short.MAX_VALUE)
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addComponent(lblVisNome1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addComponent(scrollListaAnimais, javax.swing.GroupLayout.PREFERRED_SIZE, 391, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40))
         );
+
+        lblVisDetalhes.setText("Detalhes:");
+
+        lblVisNome.setText("Nome:");
+
+        lblVisTemperamento.setText("Temperamento");
+
+        lblVisTituloAdotante.setText("Adotante:");
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(45, 45, 45)
+                        .addComponent(lblVisFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(63, 63, 63)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel6Layout.createSequentialGroup()
+                                .addComponent(lblVisTituloAdotante)
+                                .addGap(119, 119, 119)
+                                .addComponent(lblVisAdotante))
+                            .addComponent(lblVisTemperamento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblVisDetalhes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(50, Short.MAX_VALUE))
+            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel6Layout.createSequentialGroup()
+                    .addGap(64, 64, 64)
+                    .addComponent(lblVisNome, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(131, Short.MAX_VALUE)))
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(34, 34, 34)
+                .addComponent(lblVisFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(62, 62, 62)
+                .addComponent(lblVisDetalhes)
+                .addGap(18, 18, 18)
+                .addComponent(lblVisTemperamento)
+                .addGap(21, 21, 21)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblVisTituloAdotante)
+                    .addComponent(lblVisAdotante))
+                .addContainerGap(97, Short.MAX_VALUE))
+            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                    .addContainerGap(286, Short.MAX_VALUE)
+                    .addComponent(lblVisNome)
+                    .addGap(208, 208, 208)))
+        );
+
+        jLabel8.setText("GALERIA DE ANIMAIS");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(48, Short.MAX_VALUE)
+                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 758, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(21, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(54, 54, 54)
+                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(64, Short.MAX_VALUE))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(81, 81, 81))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(92, 92, 92))
+        );
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(55, 55, 55)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(630, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(52, 52, 52)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(147, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(49, 49, 49)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(46, 46, 46)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        pnlGaleria.add(jPanel1, java.awt.BorderLayout.CENTER);
 
         tbpPrincipal.addTab("Galeria", new javax.swing.ImageIcon(getClass().getResource("/image-galery.png")), pnlGaleria); // NOI18N
 
@@ -355,24 +727,44 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_cbxEspecieActionPerformed
 
     private void btnCarregarFotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCarregarFotoActionPerformed
-        javax.swing.JFileChooser fileChooser = new javax.swing.JFileChooser();
+      JFileChooser fileChooser = new JFileChooser();
         fileChooser.setDialogTitle("Selecione a foto");
 
-        javax.swing.filechooser.FileNameExtensionFilter filtro = new javax.swing.filechooser.FileNameExtensionFilter("Imagens", "jpg", "jpeg", "png");
+        // 1. Ampliando o filtro para os formatos suportados nativamente pelo Java
+        FileNameExtensionFilter filtro = new FileNameExtensionFilter(
+            "Imagens (JPG,JPEG , PNG, GIF, BMP)", "jpg", "jpeg", "png", "gif", "bmp"
+        );
         fileChooser.setFileFilter(filtro);
+        fileChooser.setAcceptAllFileFilterUsed(true); // Permite ao usuário selecionar "Todos os Arquivos" caso precise
 
         int resultado = fileChooser.showOpenDialog(this);
 
-        if (resultado == javax.swing.JFileChooser.APPROVE_OPTION) {
-            java.io.File arquivo = fileChooser.getSelectedFile();
+        if (resultado == JFileChooser.APPROVE_OPTION) {
+            File arquivo = fileChooser.getSelectedFile();
 
-            javax.swing.ImageIcon iconeOriginal = new javax.swing.ImageIcon(arquivo.getAbsolutePath());
-            java.awt.Image imagem = iconeOriginal.getImage().getScaledInstance(lblFotoAnimal.getWidth(), lblFotoAnimal.getHeight(), java.awt.Image.SCALE_SMOOTH);
+            try {
+                // 2. Usar ImageIO é a melhor prática no Java para ler arquivos de imagem
+                BufferedImage imagemOriginal = ImageIO.read(arquivo);
 
-            lblFotoAnimal.setIcon(new javax.swing.ImageIcon(imagem));
+                if (imagemOriginal != null) {
+                    // 3. Prevenção de erro caso a label retorne tamanho 0 (ex: interface ainda carregando)
+                    int largura = lblFotoAnimal.getWidth() > 0 ? lblFotoAnimal.getWidth() : 150; 
+                    int altura = lblFotoAnimal.getHeight() > 0 ? lblFotoAnimal.getHeight() : 150;
+
+                    // Redimensiona a imagem para caber na Label com suavização
+                    Image imagemRedimensionada = imagemOriginal.getScaledInstance(largura, altura, Image.SCALE_SMOOTH);
+                    
+                    lblFotoAnimal.setIcon(new ImageIcon(imagemRedimensionada));
+                } else {
+                    // Cai aqui se o arquivo não for uma imagem ou estiver corrompido
+                    JOptionPane.showMessageDialog(this, "O arquivo selecionado não é uma imagem suportada.", "Formato Inválido", JOptionPane.WARNING_MESSAGE);
+                }
+                
+            } catch (Exception e) {
+                // 4. Captura erros (como falta de permissão para ler o arquivo)
+                JOptionPane.showMessageDialog(this, "Erro ao carregar a imagem:\n" + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+            }
         }
-
-
     }//GEN-LAST:event_btnCarregarFotoActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
@@ -391,11 +783,29 @@ public class TelaPrincipal extends javax.swing.JFrame {
         // Adiciona os dados como uma nova linha na tabela
         javax.swing.table.DefaultTableModel modelo = (javax.swing.table.DefaultTableModel) tblListagemAnimais.getModel();
         modelo.addRow(new Object[]{nome, especie, status, adotante});
-
+        // === ADICIONE ISTO AQUI ===
+        // Pega a imagem que está na tela e guarda no nosso "banco" usando o nome do animal
+        javax.swing.Icon fotoDoAnimal = lblFotoAnimal.getIcon();
+        if (fotoDoAnimal != null) {
+            bancoDeFotos.put(nome, fotoDoAnimal);
+        }
+        
+        // Limpa a foto da tela de cadastro para o próximo animal
+        lblFotoAnimal.setIcon(null);
+        // ==========================
         // Limpa o campo de nome para facilitar o proximo cadastro
-        txtNomeAnimal.setText("");
+       txtNomeAnimal.setText("");
 
+        // ADICIONE ESTA LINHA:
+        atualizarListaAnimaisNoCombobox();
 
+        lblFotoAnimal.setIcon(null);
+        
+        // ==========================================
+        // SE ESSAS DUAS LINHAS FALTAR, A LISTA NÃO ATUALIZA!
+        // ==========================================
+        atualizarListaAnimaisNoCombobox();
+        atualizarListaGaleria();
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
@@ -418,7 +828,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
         // Mensagem de confirmacao para o usuario
         javax.swing.JOptionPane.showMessageDialog(this, "Animal excluido com sucesso", "Sucesso", javax.swing.JOptionPane.INFORMATION_MESSAGE);
 
-
+atualizarListaAnimaisNoCombobox();
+atualizarListaGaleria();
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void mnuSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuSairActionPerformed
@@ -432,6 +843,155 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_mnuSairActionPerformed
+
+    private void txtNomeAdotanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeAdotanteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNomeAdotanteActionPerformed
+
+    private void btnSalvarAdotanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarAdotanteActionPerformed
+        // TODO add your handling code here:
+      if (txtNomeAdotante.getText().trim().isEmpty() || txtCpf.getText().trim().isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Preencha pelo menos o Nome e o CPF antes de salvar.", "Erro", javax.swing.JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // 1. Coleta TODOS os dados digitados na tela
+        String nome = txtNomeAdotante.getText();
+        String cpf = txtCpf.getText();
+        String telefone = txtTelefone.getText();
+        String cep = txtCep.getText();
+        String rua = txtRua.getText();
+        String bairro = txtBairro.getText();
+        String cidade = txtCidade.getText(); 
+        
+        // 2. Prepara os dados extras exigidos pelas colunas da sua tabela
+        int id = tblListagemAdotantes.getRowCount() + 1;
+        String enderecoCompleto = cidade + " (" + bairro + " - " + rua + " / CEP: " + cep + ")";
+        
+        // ==========================================
+        // A MÁGICA ACONTECE AQUI:
+        // Verifica o que está selecionado no combobox. Se não tiver nada, envia "Nenhum".
+        // ==========================================
+        String animalAdotado = pnlAnimal.getSelectedItem() != null ? pnlAnimal.getSelectedItem().toString() : "Nenhum";
+
+        // 3. Adiciona os dados na tabela
+        javax.swing.table.DefaultTableModel modelo = (javax.swing.table.DefaultTableModel) tblListagemAdotantes.getModel();
+        modelo.addRow(new Object[]{id, nome, cpf, telefone, enderecoCompleto, animalAdotado});
+
+        // 4. Limpa os campos para o próximo cadastro
+        txtNomeAdotante.setText("");
+        txtCpf.setText("");
+        txtTelefone.setText("");
+        txtCep.setText("");
+        txtRua.setText("");
+        txtBairro.setText("");
+        txtCidade.setText("");
+        
+        // Volta o combobox de animais para a primeira opção (Nenhum) para limpar a tela
+        if (pnlAnimal.getItemCount() > 0) {
+            pnlAnimal.setSelectedIndex(0); 
+        }
+        
+        // 5. Foca de volta no primeiro campo
+        txtNomeAdotante.requestFocus();
+    }//GEN-LAST:event_btnSalvarAdotanteActionPerformed
+
+    private void btnBuscarCepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarCepActionPerformed
+        // TODO add your handling code here:
+        
+        // Pega o texto digitado no campo de CEP
+        String cep = txtCep.getText();
+        
+        // Verifica se o campo não está vazio
+        if (cep.trim().isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Por favor, digite um CEP para buscar.", "Aviso", javax.swing.JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        // Chama o método da sua classe ViaCepService
+        // O NetBeans vai precisar que a classe esteja importada no topo:
+        // import br.edu.bsi.prog2.paineladocao.service.ViaCepService;
+        String[] endereco = br.edu.bsi.prog2.paineladocao.service.ViaCepService.buscarEnderecoPorCep(cep);
+        
+        // Verifica se a API retornou um resultado válido
+        if (endereco != null) {
+            // Preenche os campos de texto com os dados do array [Rua, Bairro, Cidade]
+            txtRua.setText(endereco[0]);
+            txtBairro.setText(endereco[1]);
+            txtCidade.setText(endereco[2]);
+            
+            // Dica de usabilidade: Se você tiver criado um campo txtNumero, foca nele
+            // txtNumero.requestFocus(); 
+        } else {
+            // Se o CEP for inválido ou a internet cair
+            javax.swing.JOptionPane.showMessageDialog(this, "CEP não encontrado ou erro na conexão.", "Erro", javax.swing.JOptionPane.ERROR_MESSAGE);
+            
+            // Limpa os campos para evitar informações erradas na tela
+            txtRua.setText("");
+            txtBairro.setText("");
+            txtCidade.setText("");
+        }
+    }//GEN-LAST:event_btnBuscarCepActionPerformed
+
+    private void txtCpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCpfActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCpfActionPerformed
+
+    private void txtCepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCepActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCepActionPerformed
+
+    private void pnlAnimalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pnlAnimalActionPerformed
+        // TODO add your handling code here:
+     
+    }//GEN-LAST:event_pnlAnimalActionPerformed
+
+    private void lstAnimaisGaleriaValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstAnimaisGaleriaValueChanged
+        // TODO add your handling code here:
+        // Este IF evita que o Java dispare o evento duas vezes ao clicar
+        if (!evt.getValueIsAdjusting()) { 
+            
+            // Descobre qual é a posição (índice) do animal clicado na lista
+            int linhaSelecionada = lstAnimaisGaleria.getSelectedIndex();
+            
+            // Se tem algo realmente selecionado (índice diferente de -1)
+            if (linhaSelecionada != -1) { 
+                
+                // Pega o modelo da tabela de animais
+                javax.swing.table.DefaultTableModel modelo = (javax.swing.table.DefaultTableModel) tblListagemAnimais.getModel();
+                
+                // Resgata os dados (0:Nome, 1:Espécie, 3:Adotante)
+                String nome = modelo.getValueAt(linhaSelecionada, 0).toString();
+                String especie = modelo.getValueAt(linhaSelecionada, 1).toString();
+                String adotante = modelo.getValueAt(linhaSelecionada, 3).toString();
+                
+                // Preenche os JLabels da direita
+                lblVisNome.setText(nome);
+                lblVisDetalhes.setText("Espécie: " + especie);
+                
+                // Lógica de cores para o Adotante
+                if (adotante.equals("Nenhum")) {
+                    lblVisAdotante.setText("Nenhum");
+                    lblVisAdotante.setForeground(new java.awt.Color(0, 153, 51)); // Verde (Disponível)
+                } else {
+                    lblVisAdotante.setText(adotante);
+                    lblVisAdotante.setForeground(new java.awt.Color(204, 0, 0)); // Vermelho (Adotado)
+                }
+                
+                // Limpa o temperamento (pois não temos ele na tabela agora)
+                lblVisTemperamento.setText(""); 
+                javax.swing.Icon fotoSalva = bancoDeFotos.get(nome);
+                
+                if (fotoSalva != null) {
+                    lblVisFoto.setText(""); // Tira o texto
+                    lblVisFoto.setIcon(fotoSalva); // Coloca a imagem
+                } else {
+                    lblVisFoto.setIcon(null);
+                    lblVisFoto.setText("Sem foto"); // Se não tiver foto, avisa
+                }
+            }
+        }
+    }//GEN-LAST:event_lstAnimaisGaleriaValueChanged
 
     /**
      * @param args the command line arguments
@@ -457,11 +1017,31 @@ public class TelaPrincipal extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> new TelaPrincipal().setVisible(true));
     }
+    
+    private void atualizarListaGaleria() {
+        // Cria um modelo de dados para a Lista
+        javax.swing.DefaultListModel<String> modeloLista = new javax.swing.DefaultListModel<>();
+        
+        // Pega o modelo da sua tabela de animais
+        javax.swing.table.DefaultTableModel modeloTabela = (javax.swing.table.DefaultTableModel) tblListagemAnimais.getModel();
+
+        // Passa por todas as linhas da tabela e adiciona apenas o NOME na lista
+        for (int i = 0; i < modeloTabela.getRowCount(); i++) {
+            String nome = (String) modeloTabela.getValueAt(i, 0); // A coluna 0 é o Nome
+            modeloLista.addElement(nome);
+        }
+        
+        // Aplica os nomes na JList da interface
+        lstAnimaisGaleria.setModel(modeloLista);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBuscarCep;
     private javax.swing.JButton btnCarregarFoto;
     private javax.swing.JButton btnExcluir;
+    private javax.swing.JButton btnExcluirAdotante;
     private javax.swing.JButton btnSalvar;
+    private javax.swing.JButton btnSalvarAdotante;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> cbxEspecie;
     private javax.swing.JComboBox<String> cbxRaca;
@@ -470,27 +1050,63 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JCheckBox chkIndependente;
     private javax.swing.JCheckBox chkSociavelAnimal;
     private javax.swing.JCheckBox chkSociavelCrianca;
+    private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JLabel lblCadastro;
     private javax.swing.JLabel lblEspecie;
     private javax.swing.JLabel lblFotoAnimal;
     private javax.swing.JLabel lblIdade;
     private javax.swing.JLabel lblNome;
+    private javax.swing.JLabel lblNomeAdotante;
     private javax.swing.JLabel lblPorte;
     private javax.swing.JLabel lblRaca;
+    private javax.swing.JLabel lblTelefone;
     private javax.swing.JLabel lblTemperamento;
+    private javax.swing.JLabel lblVisAdotante;
+    private javax.swing.JLabel lblVisDetalhes;
+    private javax.swing.JLabel lblVisFoto;
+    private javax.swing.JLabel lblVisNome;
+    private javax.swing.JLabel lblVisNome1;
+    private javax.swing.JLabel lblVisTemperamento;
+    private javax.swing.JLabel lblVisTituloAdotante;
+    private javax.swing.JList<String> lstAnimaisGaleria;
     private javax.swing.JMenu mnuArquivo;
     private javax.swing.JMenuBar mnuBarPrincipal;
     private javax.swing.JMenuItem mnuSair;
     private javax.swing.JPanel pnlAdotantes;
     private javax.swing.JPanel pnlAnimais;
+    private javax.swing.JComboBox<String> pnlAnimal;
     private javax.swing.JPanel pnlGaleria;
     private javax.swing.JRadioButton rbGrande;
     private javax.swing.JRadioButton rbMedio;
     private javax.swing.JRadioButton rbPequeno;
+    private javax.swing.JScrollPane scrollListaAnimais;
     private javax.swing.JSpinner spnIdade;
+    private javax.swing.JScrollPane tblAdotantes;
     private javax.swing.JScrollPane tblAnimais;
+    private javax.swing.JTable tblListagemAdotantes;
     private javax.swing.JTable tblListagemAnimais;
     private javax.swing.JTabbedPane tbpPrincipal;
+    private javax.swing.JTextField txtBairro;
+    private javax.swing.JFormattedTextField txtCep;
+    private javax.swing.JTextField txtCidade;
+    private javax.swing.JTextField txtCpf;
+    private javax.swing.JTextField txtNomeAdotante;
     private javax.swing.JTextField txtNomeAnimal;
+    private javax.swing.JTextField txtRua;
+    private javax.swing.JFormattedTextField txtTelefone;
     // End of variables declaration//GEN-END:variables
 }
