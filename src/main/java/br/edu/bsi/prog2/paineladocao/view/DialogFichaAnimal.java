@@ -64,22 +64,7 @@ public class DialogFichaAnimal extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        lblFoto.setText("jLabel1");
         lblFoto.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-
-        lblNome.setText("jLabel2");
-
-        lblEspecie.setText("jLabel3");
-
-        lblRaca.setText("jLabel4");
-
-        lblPorte.setText("jLabel5");
-
-        lblIdade.setText("jLabel6");
-
-        lblTemperamento.setText("jLabel7");
-
-        lblAdotante.setText("jLabel8");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -105,7 +90,7 @@ public class DialogFichaAnimal extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(38, 38, 38)
-                .addComponent(lblFoto, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
+                .addComponent(lblFoto, javax.swing.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(lblNome)
                 .addGap(18, 18, 18)
