@@ -2,7 +2,7 @@
 
 > **🏆 Avaliação:** Trabalho avaliado com nota **A** na disciplina de Programação 2!
 
-<![Nota Final do Trabalho](nota.png)
+![Nota Final do Trabalho](nota.png)
 
 
 
