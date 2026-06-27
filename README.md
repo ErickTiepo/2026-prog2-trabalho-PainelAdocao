@@ -2,7 +2,8 @@
 
 > **🏆 Avaliação:** Trabalho avaliado com nota **A** na disciplina de Programação 2!
 > 
-><img width="1022" height="68" alt="nota" src="https://github.com/user-attachments/assets/4908dec6-ca04-44a7-ba0c-9af940b1d8ed" />
+<![Nota Final do Trabalho](nota.png)
+
 
 
 ## 1. Descrição do Projeto
